@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+    has_many :categories, dependent: :destroy
     has_many :transactions, dependent: :destroy
 
     # Optional: Add validations

@@ -1,12 +1,8 @@
 <div id="<%= dom_id account %>">
-  <p>
-    <strong>Name:</strong>
-    <%= account.name %>
-  </p>
-
-  <p>
-    <strong>Balance:</strong>
-    <%= account.balance %>
-  </p>
-
+ 
+  <tr>
+    <td><%= link_to account.name, account %></td>
+    <td><%= account.balance %></td>
+  </tr>
+ 
 </div>

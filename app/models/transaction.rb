@@ -1,7 +1,9 @@
 class Transaction < ApplicationRecord
   belongs_to :account
+  belongs_to :category
 
     # Optional: Add validations
+    validates :category, presence: true
     validates :title, :amount, presence: true
     validates :amount, numericality: { greater_than: 0 }
     validate :sufficient_balance

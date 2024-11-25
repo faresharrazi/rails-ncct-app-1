@@ -1,12 +1,10 @@
 <% content_for :title, "Editing transaction" %>
-
+<%= link_to "Back", @transaction%>
 <h1>Editing transaction</h1>
 
 <%= render "form", transaction: @transaction %>
 
 <br>
 
-<div>
-  <%= link_to "Show this transaction", @transaction %> |
-  <%= link_to "Back to transactions", transactions_path %>
-</div>
+<%= button_to "Cancel", @transaction, method: :get %>
+<%= button_to "Destroy this transaction", @transaction, method: :delete, data: { turbo_confirm: "Are you sure?" } %>

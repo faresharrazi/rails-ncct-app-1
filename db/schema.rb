@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_23_132009) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_24_172211) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.float "balance"
@@ -18,15 +18,23 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_23_132009) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.string "title"
     t.float "amount"
-    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "account_id"
+    t.integer "category_id"
     t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.index ["category_id"], name: "index_transactions_on_category_id"
   end
 
   add_foreign_key "transactions", "accounts"
+  add_foreign_key "transactions", "categories"
 end

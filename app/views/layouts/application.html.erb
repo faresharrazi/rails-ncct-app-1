@@ -20,11 +20,11 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
   </head>
 
   <body>
-  <%= link_to 'Accounts', accounts_path %>
-  <%= link_to 'Transactions', transactions_path %>
+    <%= render 'layouts/navbar' %>
 
     <%= yield %>
   </body>

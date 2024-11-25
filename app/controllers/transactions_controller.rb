@@ -13,10 +13,14 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    @accounts = Account.all
+    @categories = Category.where(account_id: params[:account_id] || @transaction.account_id)
   end
 
   # GET /transactions/1/edit
   def edit
+    @accounts = Account.all
+    @categories = Category.where(account_id: @transaction.account_id)
   end
 
   # POST /transactions or /transactions.json
@@ -59,12 +63,13 @@ class TransactionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    
     def set_transaction
-      @transaction = Transaction.find(params.expect(:id))
+      @transaction = Transaction.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.expect(transaction: [ :title, :amount, :category, :account_id ])
+      params.expect(transaction: [ :title, :amount, :category_id, :account_id ])
     end
 end

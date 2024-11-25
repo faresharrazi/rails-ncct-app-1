@@ -1,21 +1,11 @@
 <div id="<%= dom_id transaction %>">
-  <table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Amount</th>
-      <th>Category</th>
-      <th>Account</th>
-    </tr>
-  </thead>
-  <tbody>
-        <tr>
-        <td><%= transaction.title %></td>
-        <td><%= transaction.amount %></td>
-        <td><%= transaction.category %></td>
-        <td> <%= transaction.account&.name || "No Account" %></td>
-        </tr>
-  </tbody>
-</table>
+
+  <tr> 
+  <td><%= transaction.created_at.strftime("%B %d %Y, %l:%M%P") %></td>
+  <td><%= link_to transaction.title, transaction %></td>
+  <td><%= transaction.amount %>€</td>
+  <td><%= transaction.category&.name %></td>
+  <td> <%= transaction.account&.name || "No Account" %></td>
+  </tr>
 
 </div>

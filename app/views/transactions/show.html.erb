@@ -1,10 +1,20 @@
 <p style="color: green"><%= notice %></p>
-
-<%= render @transaction %>
-
-<div>
-  <%= link_to "Edit this transaction", edit_transaction_path(@transaction) %> |
-  <%= link_to "Back to transactions", transactions_path %>
-
-  <%= button_to "Destroy this transaction", @transaction, method: :delete %>
-</div>
+  <h3><%= @transaction.title %>(<%= link_to "edit", edit_transaction_path(@transaction) %>)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Account</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr> 
+        <td><%= @transaction.created_at.strftime("%B %d %Y, %l:%M%P") %></td>
+        <td><%= @transaction.amount %>€</td>
+        <td><%= @transaction.category&.name %></td>
+        <td> <%= @transaction.account&.name || "No Account" %></td>
+      </tr>
+  </tbody>
+  </table>

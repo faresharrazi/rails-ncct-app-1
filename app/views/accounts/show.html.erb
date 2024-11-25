@@ -1,17 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @account %>
+<h3> <strong><%= @account.name %></strong> - <%= @account.balance %>€ (<%= link_to "Edit", edit_account_path(@account) %>)</h3>
 
-<div>
-  <%= link_to "Edit this account", edit_account_path(@account) %> |
-  <%= link_to "Back to accounts", accounts_path %>
 
-  <%= button_to "Destroy this account", @account, method: :delete %>
+<h4>Transactions</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Title</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Account</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @account.transactions.each.each do |transaction| %>
+      <%= render transaction %>
+    <% end %>
+    </tbody>
+  </table>
 </div>
-
-<h2>Transactions</h2>
-<ul>
-  <% @account.transactions.each do |transaction| %>
-    <li><%= transaction.title %> - $<%= transaction.amount %> (<%= transaction.category %>)</li>
-  <% end %>
-</ul>
